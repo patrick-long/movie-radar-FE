@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import './App.css';
 import MovieCollection from './Pages/MovieCollection/MovieCollection';
+import MovieShow from './Pages/MovieShow/MovieShow';
 
 function App() {
 
@@ -19,11 +21,11 @@ function App() {
 
       setMovies({
         data: [
-          movies1, 
-          movies2, 
-          movies3, 
-          movies4, 
-          movies5
+          ...movies1.results, 
+          ...movies2.results, 
+          ...movies3.results, 
+          ...movies4.results, 
+          ...movies5.results
         ]
       })
     } catch (error) {
@@ -35,17 +37,29 @@ function App() {
     getAppData();
   }, []); 
 
-  console.log(getMovies);
+  console.log(getMovies.data);
 
   return (
     <div className="App">
       <header className="App-header">
-        Movie Radar
+        <p>Movie Radar</p>
+        <Switch>
+          <Route>
+            <Link to='/'>
+              Home
+            </Link>
+          </Route>
+        </Switch>
       </header>
       <Switch>
         <Route exact path='/' render={props => 
           <MovieCollection data={getMovies?.data} />
-        } />
+        }/>
+        <Route exact path='/movies/:id' render={props => (
+          <MovieShow data={getMovies?.data} 
+            {...props}
+          />
+        )}/>
       </Switch>
     </div>
   );
