@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom'; 
 import './App.css';
-import MovieCard from './Components/MovieCard/MovieCard';
+import MovieCollection from './Pages/MovieCollection/MovieCollection';
 
 function App() {
 
@@ -41,13 +42,11 @@ function App() {
       <header className="App-header">
         Movie Radar
       </header>
-      <div className='movie-container' >
-        <MovieCard data={getMovies.data[0].results} />
-        <MovieCard data={getMovies.data[1].results} />
-        <MovieCard data={getMovies.data[2].results} />
-        <MovieCard data={getMovies.data[3].results} />
-        <MovieCard data={getMovies.data[4].results} />
-      </div>
+      <Switch>
+        <Route exact path='/' render={props => 
+          <MovieCollection data={getMovies?.data} />
+        } />
+      </Switch>
     </div>
   );
 }
