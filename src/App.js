@@ -40,11 +40,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Movie Radar</p>
         <Switch>
           <Route>
             <Link to='/'>
-              Home
+              <p id='header-name'>Movie Radar</p>
             </Link>
           </Route>
         </Switch>

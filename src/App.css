@@ -5,14 +5,20 @@
 .App-header {
   background-color: black;
   height: 8vh;
-  min-height: 50px;
+  min-height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 28px;
   font-weight: 700;
-  color: white;
   padding: 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+#header-name {
+  color: red;
+  text-decoration: underline;
+  text-decoration-color: black;
 }
 
 .movie-container {
@@ -26,5 +32,6 @@
   color: white;
   display: column;
   background: black;
+  padding-top: 10px;
   
 }
