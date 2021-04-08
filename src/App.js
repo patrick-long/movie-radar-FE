@@ -37,8 +37,6 @@ function App() {
     getAppData();
   }, []); 
 
-  console.log(getMovies.data);
-
   return (
     <div className="App">
       <header className="App-header">
