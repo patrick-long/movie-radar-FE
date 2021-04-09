@@ -1,17 +1,19 @@
 .App {
   text-align: center;
+  width: 100vw;
 }
 
 .App-header {
   background-color: black;
   height: 8vh;
   min-height: 80px;
+  width: 94%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 28px;
   font-weight: 700;
-  padding: 0 20px;
+  padding: 0 3%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -21,17 +23,42 @@
   text-decoration-color: black;
 }
 
+small {
+  font-size: 24px;
+  margin-left: 3px;
+}
+
 .movie-container {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin-top: 50px;
+  margin: 50px 0 50px 0;
 }
 
 .movie-show {
   color: white;
-  display: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   background: black;
-  padding-top: 10px;
-  
+  padding-top: 50px; 
+}
+
+footer {
+  width: 100%;
+  padding: 20px 0 70px 0;
+  background: rgba(0, 0, 0, 0.92);
+  color: white;
+  font-size: 17px;
+  font-weight: 200;
+}
+
+.favicons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favicons > img {
+  margin: 10px 10px 10px 5px;
+  height: 40px;
 }

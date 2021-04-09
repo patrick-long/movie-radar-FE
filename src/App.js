@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import './App.css';
 import MovieCollection from './Pages/MovieCollection/MovieCollection';
 import MovieShow from './Pages/MovieShow/MovieShow';
+import facebook from '../src/imgs/fb-favicon.png';
+import instagram from '../src/imgs/insta-favicon.png';
+import twitter from '../src/imgs/twitter-favicon.png';
+import youtube from '../src/imgs/youtube-favicon.png';
 
 function App() {
 
@@ -36,14 +40,14 @@ function App() {
   useEffect(() => {
     getAppData();
   }, []); 
-
+  
   return (
     <div className="App">
       <header className="App-header">
         <Switch>
           <Route>
             <Link to='/'>
-              <p id='header-name'>Movie Radar</p>
+              <h1 id='header-name'>M<span><small>OVIE RADAR</small></span></h1>
             </Link>
           </Route>
         </Switch>
@@ -58,6 +62,14 @@ function App() {
           />
         )}/>
       </Switch>
+      <footer><p>Copyright © Movie Radar 2021</p>
+        <div className='favicons' >
+          <img src={facebook} alt='facebook favicon'/>
+          <img src={instagram} alt='instagram favicon'/>
+          <img src={twitter} alt='twitter favicon'/>
+          <img src={youtube} alt='youtube favicon'/>
+        </div>
+      </footer>
     </div>
   );
 }
