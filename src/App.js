@@ -21,10 +21,12 @@ function App() {
   const getAppData = async () => {
     try {
       const allMovies =  await fetch(`http://localhost:3001/api/movies/`).then(res => res.json());
+      const genreMovies = await fetch(`http://localhost:3001/api/movies/genres`).then(res => res.json());
 
       setMovies({
         data: [
-          ...allMovies, 
+          ...allMovies,
+          ...genreMovies
         ]
       })
     } catch (error) {
@@ -59,16 +61,15 @@ function App() {
       }).then(res => res.json());
   
       setMovies(prevState => ({
-        data: [...prevState.data, prevState.searchNewMovie],
-        searchNewMovie: {
-          title: ''
-        }
+        data: [...prevState.data, prevState.searchNewMovie]
       }))
     } catch (error) {
       console.log(error);
     }
   }
-  
+
+  console.log(getMovies);
+
   return (
     <div className="App">
       <header className="App-header">
