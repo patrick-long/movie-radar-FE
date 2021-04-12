@@ -12,24 +12,19 @@ import youtube from '../src/imgs/youtube-favicon.png';
 function App() {
 
   const [getMovies, setMovies] = useState({
-    data: []
+    data: [],
+    searchNewMovie: {
+      title: ''
+    }
   });
 
   const getAppData = async () => {
     try {
-      const movies1 =  await fetch(`http://localhost:3001/api/movies/popular1`).then(res => res.json());
-      const movies2 =  await fetch(`http://localhost:3001/api/movies/popular2`).then(res => res.json());
-      const movies3 =  await fetch(`http://localhost:3001/api/movies/popular3`).then(res => res.json());
-      const movies4 =  await fetch(`http://localhost:3001/api/movies/popular4`).then(res => res.json());
-      const movies5 =  await fetch(`http://localhost:3001/api/movies/popular5`).then(res => res.json());
+      const allMovies =  await fetch(`http://localhost:3001/api/movies/`).then(res => res.json());
 
       setMovies({
         data: [
-          ...movies1.results, 
-          ...movies2.results, 
-          ...movies3.results, 
-          ...movies4.results, 
-          ...movies5.results
+          ...allMovies, 
         ]
       })
     } catch (error) {
@@ -40,17 +35,53 @@ function App() {
   useEffect(() => {
     getAppData();
   }, []); 
+
+  const handleChange = e => {
+    setMovies(prevState => ({
+      ...prevState,
+      searchNewMovie: {
+        ...prevState.searchNewMovie,
+        [e.target.name]: e.target.value
+      }
+    }))
+  }
+
+  const searchMovie = async e => {
+    e.preventDefault();
+    try {
+      const BASE_URL = 'http://localhost:3001/api/movies';
+      await fetch(BASE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'Application/json'
+        },
+        body: JSON.stringify(getMovies.searchNewMovie)
+      }).then(res => res.json());
+  
+      setMovies(prevState => ({
+        data: [...prevState.data, prevState.searchNewMovie],
+        searchNewMovie: {
+          title: ''
+        }
+      }))
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
   return (
     <div className="App">
       <header className="App-header">
-        <Switch>
-          <Route>
-            <Link to='/'>
-              <h1 id='header-name'>M<span><small>OVIE RADAR</small></span></h1>
-            </Link>
-          </Route>
-        </Switch>
+        <Link to='/'>
+          <h1 id='header-name'>M<span><small>OVIE RADAR</small></span></h1>
+        </Link>
+        <form onSubmit={searchMovie}>
+          <input className='form-control' type='text' name='title' placeholder='Search for a new movie' value={getMovies.searchNewMovie?.title} onChange={handleChange}/>
+          <button type='submit' className='btn btn-primary'>Submit</button>
+        </form>
+        <Link to='/logout'>
+          <h5>Log out</h5>
+        </Link>
       </header>
       <Switch>
         <Route exact path='/' render={props => 

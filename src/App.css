@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   width: 100vw;
+  min-height: 100vh;
+  margin: 0;
 }
 
 .App-header {
@@ -23,19 +25,32 @@
   text-decoration-color: black;
 }
 
+.App-header > form {
+  width: 60%;
+  max-width: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-header > form > input {
+  margin-right: 10px;
+}
+
 small {
   font-size: 24px;
   margin-left: 3px;
 }
 
 .movie-container {
-  width: 100%;
+  width: 96%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 50px 0 50px 0;
+  margin: 50px 2% 50px 2%;
 }
 
 .movie-show {
+  min-height: 66vh;
   color: white;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -61,4 +76,16 @@ footer {
 .favicons > img {
   margin: 10px 10px 10px 5px;
   height: 40px;
+}
+
+@media only screen and (min-width: 1300px) {
+  .movie-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1650px) {
+  .movie-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
 }
