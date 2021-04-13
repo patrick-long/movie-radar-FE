@@ -94,9 +94,13 @@ small {
   height: 70vh;
 }
 
-.show-homepage {
+.show-amazon {
   padding: 50px 0 20px;
   font-size: 22px;
+}
+
+.show-homepage {
+  padding-bottom: 20px;
 }
 
 .show-genres {

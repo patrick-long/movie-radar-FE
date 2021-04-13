@@ -21,12 +21,12 @@ function App() {
   const getAppData = async () => {
     try {
       const allMovies =  await fetch(`http://localhost:3001/api/movies/`).then(res => res.json());
-      const genreMovies = await fetch(`http://localhost:3001/api/movies/genres`).then(res => res.json());
+      // const genreMovies = await fetch(`http://localhost:3001/api/movies/genres`).then(res => res.json());
 
       setMovies({
         data: [
           ...allMovies,
-          ...genreMovies
+          // ...genreMovies
         ]
       })
     } catch (error) {
@@ -58,17 +58,18 @@ function App() {
           'Content-type': 'Application/json'
         },
         body: JSON.stringify(getMovies.searchNewMovie)
-      }).then(res => res.json());
+      }).then(res => res.json()).then(() => getAppData());
   
       setMovies(prevState => ({
-        data: [...prevState.data, prevState.searchNewMovie]
+        data: [...prevState.data],
+        searchNewMovie: {
+          title: ''
+        }
       }))
     } catch (error) {
       console.log(error);
     }
   }
-
-  console.log(getMovies);
 
   return (
     <div className="App">
