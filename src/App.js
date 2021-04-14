@@ -5,6 +5,7 @@ import './App.css';
 import MovieCollection from './Pages/MovieCollection/MovieCollection';
 import GenreCollection from './Pages/GenreCollection/GenreCollection';
 import MovieShow from './Pages/MovieShow/MovieShow';
+import GenreShow from './Pages/GenreShow/GenreShow';
 import facebook from '../src/imgs/fb-favicon.png';
 import instagram from '../src/imgs/insta-favicon.png';
 import twitter from '../src/imgs/twitter-favicon.png';
@@ -68,7 +69,8 @@ function App() {
       }).then(res => res.json()).then(() => getAppData());
   
       setMovies(prevState => ({
-        movieData: [...prevState.movieData],
+        movieData: [...prevState?.movieData],
+        genreData: [...prevState?.genreData],
         searchNewMovie: {
           title: ''
         }
@@ -101,8 +103,8 @@ function App() {
       }).then(res => res.json()).then(() => getAppData());
   
       setMovies(prevState => ({
-        moviedata: [...prevState.movieData],
-        genreData: [...prevState.genreData],
+        moviedata: [...prevState?.movieData],
+        genreData: [...prevState?.genreData],
         searchNewGenre: {
           genre: ''
         }
@@ -120,30 +122,61 @@ function App() {
         <Link to='/'>
           <h1 id='header-name'>M<span><small>OVIE RADAR</small></span></h1>
         </Link>
-        <form onSubmit={searchMovie}>
-          <input className='form-control' type='text' name='title' placeholder='Search for a new movie' value={getMovies.searchNewMovie?.title} onChange={handleChangeMovie}/>
-          <button type='submit' className='btn btn-primary'>Submit</button>
-        </form>
-        <form onSubmit={searchGenre}>
-          <input className='form-control' type='text' name='genre' placeholder='Search for a genre' value={getMovies.searchNewGenre?.genre} onChange={handleChangeGenre}/>
-          <button type='submit' className='btn btn-primary'>Submit</button>
-        </form>
+        <Switch>
+          <Route exact path='/' render={props => 
+            <>
+              <Link to='/' className='header-link'>
+                <h5>Search</h5>
+              </Link>
+              <Link to='/genres' className='header-link'>
+                <h5>Genres</h5>
+              </Link>
+              <form onSubmit={searchMovie}>
+                <input className='form-control' type='text' name='title' placeholder='Search for a new movie' value={getMovies.searchNewMovie?.title} onChange={handleChangeMovie}/>
+                <button type='submit' className='btn btn-primary'>Submit</button>
+              </form>
+            </>
+          } />
+          <Route exact path='/genres' render={props => 
+            <>
+              <Link to='/' className='header-link'>
+                <h5>Search</h5>
+              </Link>
+              <Link to='/genres' className='header-link'>
+                <h5>Genres</h5>
+              </Link>
+              <form onSubmit={searchGenre}>
+                <input className='form-control' type='text' name='genre' placeholder='Search for a genre' value={getMovies.searchNewGenre?.genre} onChange={handleChangeGenre}/>
+                <button type='submit' className='btn btn-primary'>Submit</button>
+              </form>
+            </>
+          } /> 
+        </Switch>
         <Link to='/logout'>
-          <h5>Log out</h5>
+          <h5 className='logout'>Log out</h5>
         </Link>
       </header>
       <Switch>
         <Route exact path='/' render={props => 
-          <>
-            <MovieCollection data={getMovies?.movieData} />
-            <GenreCollection data={getMovies?.genreData} />
-          </>
-        }/>
+          <MovieCollection data={getMovies?.movieData} />
+        } />
+        <Route exact path='/genres' render={props => 
+          <GenreCollection data={getMovies?.genreData} />
+        } />
         <Route exact path='/movies/:id' render={props => (
-          <MovieShow data={getMovies?.movieData} 
-            {...props}
-          />
-        )}/>
+          <>
+            <MovieShow data={getMovies?.movieData} 
+              {...props}
+            />
+          </>
+        )} />
+        <Route exact path='/movies/genres/:id' render={props => (
+          <>
+            <GenreShow data={getMovies?.genreData} 
+              {...props}
+            />
+          </>
+        )} />
       </Switch>
       <footer><p>Copyright © Movie Radar 2021</p>
         <div className='favicons' >

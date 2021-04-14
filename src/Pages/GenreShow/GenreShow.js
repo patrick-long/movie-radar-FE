@@ -1,6 +1,6 @@
 import YouTube from 'react-youtube';
 
-const MovieShow = props => {
+const GenreShow = props => {
     const specificMovie = props.data.find(movie => movie.id === parseInt(props.match.params.id));
 
     const opts = {
@@ -54,4 +54,4 @@ const MovieShow = props => {
     )
 }
 
-export default MovieShow;
+export default GenreShow;

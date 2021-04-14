@@ -26,7 +26,7 @@
 }
 
 .App-header > form {
-  width: 60%;
+  width: 50%;
   max-width: 650px;
   display: flex;
   justify-content: center;
@@ -35,6 +35,17 @@
 
 .App-header > form > input {
   margin-right: 10px;
+}
+
+.App-header > .header-link, .header-link > h5, .logout {
+  color: white;
+  text-decoration-color: black;
+  margin: 0;
+}
+
+.logout:hover {
+  text-decoration: underline;
+  text-decoration-color: black;
 }
 
 small {
@@ -46,7 +57,7 @@ small {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  padding: 50px 2% 50px 2%;
+  padding: 0px 2% 50px 2%;
 }
 
 .movie-show {
