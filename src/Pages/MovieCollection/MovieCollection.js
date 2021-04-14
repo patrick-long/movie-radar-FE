@@ -1,11 +1,12 @@
 import MovieCard from '../../Components/MovieCard/MovieCard';
 
-const MovieCollection = props => (
-    <div className='movie-container' >
-        {props?.data.map(result => 
-            <MovieCard data={result} />
-        )}
-    </div>
-)
+const MovieCollection = props => {
+    return(
+        <>
+            <h4>Your search results</h4>
+            <MovieCard data={props.data} />
+        </>
+    )
+}
 
 export default MovieCollection; 

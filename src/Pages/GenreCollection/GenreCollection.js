@@ -2,12 +2,11 @@ import GenreCard from '../../Components/GenreCard/GenreCard';
 
 const GenreCollection = props => {
     return(
-        <div className='movie-container' >
-            {props?.data.map(result => 
-                <MovieCard data={result} />
-            )}
-        </div>
+        <>
+            <h4>Top results for ***</h4>
+            <GenreCard data={props.data} />
+        </>
     )
 }
 
-export default GenreCard;
+export default GenreCollection;
