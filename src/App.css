@@ -234,15 +234,33 @@ footer {
   font-size: 32px;
 }
 
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: 1024px) {
   .movie-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
-@media only screen and (min-width: 1650px) {
+@media only screen and (min-width: 1200px) {
   .movie-container {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .movie-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1450px) {
+  .movie-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .movie-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }
 
