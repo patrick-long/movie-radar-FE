@@ -31,8 +31,8 @@ const MovieShow = props => {
     }
 
         return(
-        <div>
-            <div className='movie-show'>
+        <div className='movie-show'>
+            <div className='movie-information'>
                 <div className='movie-show-backdrop'>
                     <img src={`https://image.tmdb.org/t/p/w500${specificMovie?.backdrop_path}`} alt={`${specificMovie?.title} backdrop poster`} id='backdrop-picture'/>
                 </div>

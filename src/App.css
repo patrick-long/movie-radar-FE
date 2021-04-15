@@ -1,12 +1,14 @@
 html {
   width: 100vw;
+  background: black;
 }
 
 .App {
   text-align: center;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   margin: 0;
+  background: black;
 }
 
 .App-header {
@@ -20,7 +22,7 @@ html {
   font-size: 28px;
   font-weight: 700;
   padding: 0 1%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 #header-name {
@@ -84,14 +86,47 @@ html {
   cursor: pointer;
 }
 
-.movie-container, .genre-container {
+.movie-container {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 0px 2% 50px 2%;
 }
 
-.movie-show {
+.genre-container {
+  display: flex;
+  align-items: center;
+  overflow-y: hidden;
+  height: 350px;
+  padding: 10px;
+  background: black;
+}
+
+.genre-container > .movie-card:last-child {
+  padding-right: 20px;
+}
+
+.genre-container::-webkit-scrollbar {
+  display: none;
+}
+
+h4 {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 35px 0 0 10px;
+  text-align: left;
+}
+
+.poster-image {
+  height: 300px;
+  transition: transform 300ms;
+  padding: 12px 8px;
+}
+
+.poster-image:hover {
+  transform: scale(1.07);
+}
+
+.movie-information {
   height: 66vh;
   min-height: 450px;
   max-height: 500px;
@@ -101,7 +136,7 @@ html {
   grid-template-columns: 1fr 1fr;
   background: black;
   padding: 3%; 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .movie-show-backdrop {
@@ -117,17 +152,17 @@ html {
 
 .movie-show-details {
   display: flex;
-  height: 100%;
+  height: 90%;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0 0 20px;
-  max-height: 300px;
+  padding: 20px 0 0 20px;
+  max-height: 400px;
   max-width: 700px;
   margin: auto;
 }
 
-.movie-show-details > .show-released, .movie-show-details > .show-runtime, .movie-show-details > .show-genres {
+.movie-information-details > .show-released, .movie-information-details > .show-runtime, .movie-information-details > .show-genres {
   align-self: flex-start;
   padding-left: 15px;
   color: rgb(165, 165, 165);
@@ -143,7 +178,7 @@ html {
   align-items: center;
   background: black;
   color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .trailer {
@@ -170,10 +205,10 @@ html {
 footer {
   width: 100%;
   padding: 20px 0 70px 0;
-  background: black;
   color: white;
   font-size: 17px;
   font-weight: 200;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .favicons {
@@ -185,6 +220,18 @@ footer {
 .favicons > img {
   margin: 10px 10px 10px 5px;
   height: 40px;
+}
+
+.carousel {
+  width: 500px;
+  height: 500px;
+  background: rgba(0, 0, 0, 0.6);
+  margin: 50px;
+}
+
+.carousel-caption {
+  color: white;
+  font-size: 32px;
 }
 
 @media only screen and (min-width: 1300px) {
@@ -200,11 +247,14 @@ footer {
 }
 
 @media only screen and (max-width: 950px) {
-  .movie-show {
+  .movie-information {
     display: flex; 
     flex-direction: column;
     max-height: 80vh;
     min-height: 700px;
+  }
+  .poster-image {
+    padding: 5px;
   }
 }
 
@@ -220,7 +270,7 @@ footer {
   }
   .trailer {
     width: 80vw;
-    height: 35vh;
+    height: 45vh;
   }
 }
 
@@ -236,7 +286,7 @@ footer {
     width: 100%;
   }
   .poster-image {
-    height: 200px;
+    height: 340px;
   }
   .App-header {
     flex-direction: column;
@@ -254,5 +304,14 @@ footer {
   }
   .user-name {
     margin: 12px 0 0 0;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .poster-image {
+    height: 260px;
+  }
+  .movie-information {
+    height: 1200px;
   }
 }
