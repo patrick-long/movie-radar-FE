@@ -238,6 +238,10 @@ footer {
   .movie-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+  .trailer {
+    height: 500px;
+    width: 900px;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -288,7 +292,7 @@ footer {
   }
   .trailer {
     width: 80vw;
-    height: 45vh;
+    height: 65vh;
   }
 }
 
