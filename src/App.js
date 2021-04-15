@@ -133,10 +133,10 @@ function App() {
         <Switch>
           <Route exact path='/' render={props => 
             <>
-              <Link to='/genres' className='header-link'>
-                <p>Genres</p>
-              </Link>
               <form onSubmit={searchMovie}>
+                <Link to='/genres' className='header-link'>
+                  <p>Genres</p>
+                </Link>
                 <input className='form-control' type='text' name='title' placeholder='Search for a new movie' value={getMovies.searchNewMovie?.title} onChange={handleChangeMovie}/>
                 <button type='submit' className='btn btn-primary'>Submit</button>
               </form>
@@ -144,10 +144,10 @@ function App() {
           } />
           <Route exact path='/genres' render={props => 
             <>
-              <Link to='/' className='header-link'>
-                <p>Home</p>
-              </Link>
               <form onSubmit={searchGenre}>
+                <Link to='/' className='header-link'>
+                  <p>Home</p>
+                </Link>
                 <input className='form-control' type='text' name='genre' placeholder='Search for a genre' value={getMovies.searchNewGenre?.genre} onChange={handleChangeGenre}/>
                 <button type='submit' className='btn btn-primary'>Submit</button>
               </form>

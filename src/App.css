@@ -1,3 +1,7 @@
+html {
+  width: 100vw;
+}
+
 .App {
   text-align: center;
   width: 100vw;
@@ -48,7 +52,7 @@
 }
 
 .logout-login {
-  margin: auto;
+  margin: auto 10px auto 0;
 }
 
 .header-link > p, .user-name {
@@ -210,11 +214,45 @@ footer {
   }
 }
 
+@media only screen and (max-width: 1024px) {
+  .poster-image {
+    height: 350px;
+  }
+  .trailer {
+    width: 80vw;
+    height: 35vh;
+  }
+}
+
 @media only screen and (max-width: 550px) {
   #backdrop-picture {
-    width: 400px;
+    width: 300px;
   }
   .show-amazon {
     width: 450px;
+  }
+  .movie-container, .genre-container {
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+  .poster-image {
+    height: 200px;
+  }
+  .App-header {
+    flex-direction: column;
+    height: 25%;
+    justify-content: center;
+  }
+  .App-header > form {
+    width: 100%;
+  }
+  .header-name {
+    width: 100%;
+  }
+  .logout-login {
+    margin: 10px 0;
+  }
+  .user-name {
+    margin: 12px 0 0 0;
   }
 }
