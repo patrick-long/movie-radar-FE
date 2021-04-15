@@ -27,8 +27,8 @@ function App() {
 
   const getAppData = async () => {
     try {
-      const allMovies =  await fetch(`http://localhost:3001/api/movies/`).then(res => res.json());
-      const genreMovies = await fetch(`http://localhost:3001/api/movies/genres`).then(res => res.json());
+      const allMovies =  await fetch(`https://movie-radar-backend.herokuapp.com/api/movies/`).then(res => res.json());
+      const genreMovies = await fetch(`https://movie-radar-backend.herokuapp.com/api/movies/genres`).then(res => res.json());
 
       setMovies({
         user: getMovies?.user,
@@ -69,7 +69,7 @@ function App() {
 
     e.preventDefault();
     try {
-      const BASE_URL = 'http://localhost:3001/api/movies';
+      const BASE_URL = 'https://movie-radar-backend.herokuapp.com/api/movies';
       await fetch(BASE_URL, {
         method: 'POST',
         headers: {
@@ -104,7 +104,7 @@ function App() {
 
     e.preventDefault();
     try {
-      const BASE_URL = 'http://localhost:3001/api/movies/genres';
+      const BASE_URL = 'https://movie-radar-backend.herokuapp.com/api/movies/genres';
       await fetch(BASE_URL, {
         method: 'POST',
         headers: {
