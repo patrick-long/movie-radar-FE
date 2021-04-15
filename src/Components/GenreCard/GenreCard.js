@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const GenreCard = props => {
+
     return(
         <>
             {props.data?.map((movie, idx) => (

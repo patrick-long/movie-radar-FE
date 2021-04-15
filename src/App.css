@@ -15,7 +15,7 @@
   justify-content: space-between;
   font-size: 28px;
   font-weight: 700;
-  padding: 0 3%;
+  padding: 0 1%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -23,6 +23,11 @@
   color: red;
   text-decoration: underline;
   text-decoration-color: black;
+}
+
+#header-name > span > small {
+  font-size: 18px;
+  margin-left: 3px;
 }
 
 .App-header > form {
@@ -37,20 +42,42 @@
   margin-right: 10px;
 }
 
-.App-header > .header-link, .header-link > h5, .logout {
+.logout-login, .header-link > p, .user-name {
   color: white;
   text-decoration-color: black;
-  margin: 0;
 }
 
-.logout:hover {
-  text-decoration: underline;
+.logout-login {
+  margin: auto;
+}
+
+.header-link > p, .user-name {
+  font-size: 16px;
+  font-weight: normal;
+  margin: auto 10px;
+}
+
+.header-link:hover {
   text-decoration-color: black;
 }
 
-small {
-  font-size: 24px;
-  margin-left: 3px;
+.logout-login, .search-checkbox {
+  font-size: 18px;
+}
+
+.search-checkbox {
+  width: 120px;
+  display: flex;
+  color: white;
+  align-items: center;
+}
+
+.search-checkbox > p {
+  margin: 0 auto;
+}
+
+.logout-login:hover {
+  cursor: pointer;
 }
 
 .movie-container, .genre-container {
@@ -71,6 +98,10 @@ small {
   background: black;
   padding: 3%; 
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.movie-show-backdrop {
+  margin: auto;
 }
 
 #backdrop-picture {

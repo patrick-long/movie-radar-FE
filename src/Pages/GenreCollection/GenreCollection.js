@@ -3,8 +3,20 @@ import GenreCard from '../../Components/GenreCard/GenreCard';
 const GenreCollection = props => {
     const genres = ['action', 'adventure', 'comedy', 'crime', 'drama', 'family', 'fantasy', 'history', 'horror', 'music', 'mystery', 'romance', 'science fiction', 'thriller', 'war', 'western'];
 
+    const searchTitle = () => {
+        if (props.data.length > 320) {
+            return 'Your search results'
+        } else {
+            return ''
+        }
+    }
+
     return(
         <>
+            <div className="genre-container">
+                <h4>{searchTitle()}</h4>
+                <GenreCard data={props.data.slice(320, 1000)} />
+            </div>
             <div className="genre-container">
                 <h4>Top results for {genres[0]} genre</h4>
                 <GenreCard data={props.data.slice(0, 20)} />

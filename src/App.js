@@ -10,11 +10,12 @@ import facebook from '../src/imgs/fb-favicon.png';
 import instagram from '../src/imgs/insta-favicon.png';
 import twitter from '../src/imgs/twitter-favicon.png';
 import youtube from '../src/imgs/youtube-favicon.png';
+import { login, logout, auth } from './Services/Firebase';
 
 function App() {
 
   const [getMovies, setMovies] = useState({
-    movieData: [],
+    user: null,
     genreData: [],
     searchNewMovie: {
       title: ''
@@ -30,6 +31,7 @@ function App() {
       const genreMovies = await fetch(`http://localhost:3001/api/movies/genres`).then(res => res.json());
 
       setMovies({
+        user: getMovies?.user,
         movieData: [
           ...allMovies,
         ],
@@ -44,6 +46,12 @@ function App() {
 
   useEffect(() => {
     getAppData();
+    auth.onAuthStateChanged(user => {
+      setMovies(prevState => ({
+        ...prevState,
+        user
+      }))
+    })
   }, []); 
 
   const handleChangeMovie = e => {
@@ -57,6 +65,8 @@ function App() {
   }
 
   const searchMovie = async e => {
+    if (!getMovies.user) return; 
+
     e.preventDefault();
     try {
       const BASE_URL = 'http://localhost:3001/api/movies';
@@ -69,8 +79,7 @@ function App() {
       }).then(res => res.json()).then(() => getAppData());
   
       setMovies(prevState => ({
-        movieData: [...prevState?.movieData],
-        genreData: [...prevState?.genreData],
+        ...prevState,
         searchNewMovie: {
           title: ''
         }
@@ -91,6 +100,8 @@ function App() {
   }
 
   const searchGenre = async e => {
+    if (!getMovies.user) return; 
+
     e.preventDefault();
     try {
       const BASE_URL = 'http://localhost:3001/api/movies/genres';
@@ -103,8 +114,7 @@ function App() {
       }).then(res => res.json()).then(() => getAppData());
   
       setMovies(prevState => ({
-        moviedata: [...prevState?.movieData],
-        genreData: [...prevState?.genreData],
+        ...prevState,
         searchNewGenre: {
           genre: ''
         }
@@ -114,22 +124,17 @@ function App() {
     }
   }
 
-  console.log(getMovies);
-
   return (
     <div className="App">
       <header className="App-header">
         <Link to='/'>
-          <h1 id='header-name'>M<span><small>OVIE RADAR</small></span></h1>
+          <h2 id='header-name'>M<span><small>OVIE RADAR</small></span></h2>
         </Link>
         <Switch>
           <Route exact path='/' render={props => 
             <>
-              <Link to='/' className='header-link'>
-                <h5>Search</h5>
-              </Link>
               <Link to='/genres' className='header-link'>
-                <h5>Genres</h5>
+                <p>Genres</p>
               </Link>
               <form onSubmit={searchMovie}>
                 <input className='form-control' type='text' name='title' placeholder='Search for a new movie' value={getMovies.searchNewMovie?.title} onChange={handleChangeMovie}/>
@@ -140,10 +145,7 @@ function App() {
           <Route exact path='/genres' render={props => 
             <>
               <Link to='/' className='header-link'>
-                <h5>Search</h5>
-              </Link>
-              <Link to='/genres' className='header-link'>
-                <h5>Genres</h5>
+                <p>Home</p>
               </Link>
               <form onSubmit={searchGenre}>
                 <input className='form-control' type='text' name='genre' placeholder='Search for a genre' value={getMovies.searchNewGenre?.genre} onChange={handleChangeGenre}/>
@@ -152,9 +154,19 @@ function App() {
             </>
           } /> 
         </Switch>
-        <Link to='/logout'>
-          <h5 className='logout'>Log out</h5>
-        </Link>
+        {
+          getMovies.user ? 
+            <>
+              <Switch>
+                <Route exact path='/' render={props => 
+                  <p className='user-name'>Welcome, {getMovies?.user.displayName}</p>
+                }/>
+              </Switch>
+              <h5 className='logout-login' onClick={logout}>Log out</h5>
+            </>
+          :
+            <h5 className='logout-login' onClick={login}>Log in</h5>
+        }
       </header>
       <Switch>
         <Route exact path='/' render={props => 

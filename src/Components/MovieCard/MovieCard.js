@@ -1,7 +1,17 @@
 import './MovieCard.css';
 import { Link } from 'react-router-dom';
+// import Slider from 'react-slick';
 
 const MovieCard = (props) => {
+
+    // const settings = {
+    //     dots: true,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 5,
+    //     slidesToScroll: 5
+    // }
+    
     return(
         <>
             <div className='movie-container'>
