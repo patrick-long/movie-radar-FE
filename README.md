@@ -12,6 +12,7 @@ Web application where users can create new movie entries through the integrated 
 - Node.js
 - React
 - Bootstrap
+- Google Firebase
 - YouTube npm package
 - The Movie Database API
 - Heroku (for deployment)
